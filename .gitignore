@@ -6,6 +6,9 @@ node_modules
 packages/random-node/dist
 n8n/.n8n/custom/random/
 
+#logs
+*.log
+
 # environment
 .env
 

@@ -12,7 +12,7 @@ Conector personalizado do n8n que encapsula a API do [Random.org](https://www.ra
 
 ```
 .
-├─ docker-compose.yml            # Stack com n8n 1.85.4 + PostgreSQL 16 e volumes
+├─ docker-compose.yml            # Stack com n8n 1.85.4 + PostgreSQL e volumes
 ├─ .env.example                  # Template das variáveis de ambiente
 ├─ package.json                  # Configuração do workspace (autor, scripts globais)
 ├─ scripts/
@@ -27,8 +27,7 @@ Conector personalizado do n8n que encapsula a API do [Random.org](https://www.ra
 │     ├─ dist/                   # Saída compilada (gerada pelo build, ignorada no git)
 │     └─ test/                   # Pasta reservada para futuros testes automatizados
 └─ n8n/.n8n/
-   ├─ custom/                    # Nodes sincronizados para dentro do container (pós-build)
-   └─ *.log                      # Logs gerados pelo runtime do n8n
+   └─ custom/                    # Nodes sincronizados para dentro do container (pós-build)
 ```
 
 ## Passo a passo
@@ -82,7 +81,6 @@ O script de build compila o pacote TypeScript (`packages/random-node`) e publica
 
   ```bash
   npm run build
-  sudo docker compose restart n8n
   ```
   O comando limpa artefatos anteriores, roda o TypeScript e atualiza `.n8n/custom`.
 
