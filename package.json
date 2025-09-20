@@ -1,0 +1,18 @@
+{
+  "name": "onfly-n8n-random-connector",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @onfly/random-node",
+    "lint": "npm run lint --workspace @onfly/random-node",
+    "test": "npm test --workspace @onfly/random-node"
+  },
+  "author": "Vinícius Augusto Alves Santos Mello",
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

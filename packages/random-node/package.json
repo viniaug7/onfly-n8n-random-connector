@@ -1,0 +1,41 @@
+{
+  "name": "@onfly/random-node",
+  "version": "0.1.0",
+  "description": "Custom n8n node to generate true random numbers using Random.org",
+  "main": "dist/nodes/Random/Random.node.js",
+  "types": "dist/nodes/Random/Random.node.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc --project tsconfig.json && node ../../scripts/postbuild.cjs",
+    "clean": "rimraf dist \"../../n8n/.n8n/custom/random\"",
+    "lint": "tsc --noEmit",
+    "test": "npm run lint"
+  },
+  "keywords": [
+    "n8n",
+    "custom-node",
+    "random"
+  ],
+  "author": "Vinícius Augusto Alves Santos Mello",
+  "license": "MIT",
+  "dependencies": {
+    "n8n-core": "^1.85.4",
+    "n8n-workflow": "^1.85.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.0"
+  },
+  "n8n": {
+    "nodeVersion": ">=1.0.0",
+    "nodes": [
+      {
+        "name": "Random",
+        "file": "dist/nodes/Random/Random.node.js"
+      }
+    ]
+  }
+}
