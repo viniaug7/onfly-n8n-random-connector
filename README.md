@@ -4,7 +4,7 @@ Conector personalizado do n8n que encapsula a API do [Random.org](https://www.ra
 
 ## Requisitos
 
-- Node.js 22+
+- Node.js + TypeScript na versão 22 (LTS)
 - npm 10+
 - Docker Engine 24+ e Docker Compose v2
 
@@ -34,14 +34,19 @@ Conector personalizado do n8n que encapsula a API do [Random.org](https://www.ra
 ## Passo a passo
 
 1. Copie o arquivo de variáveis padrão:
+
    ```bash
    cp .env.example .env
    ```
+
 2. Instale as dependências (workspace npm):
+
    ```bash
    npm install
    ```
+
 3. Compile o node customizado e sincronize com `.n8n/custom`:
+
    ```bash
    npm run build
    ```
@@ -51,28 +56,50 @@ O script de build compila o pacote TypeScript (`packages/random-node`) e publica
 ## Executar o n8n localmente
 
 1. Inicialize a stack:
+
    ```bash
-   docker compose up -d
+   sudo docker compose up -d
    ```
+
 2. Acesse o painel em [http://localhost:5678](http://localhost:5678) (credenciais padrão `admin/admin`).
+
+**Segurança (local vs. prod)**
+
+* As credenciais padrão `admin/admin` e a `N8N_ENCRYPTION_KEY` fornecidas em `.env.example` servem apenas para desenvolvimento local.
+* Em produção, redefina `N8N_BASIC_AUTH_USER`, `N8N_BASIC_AUTH_PASSWORD` e `N8N_ENCRYPTION_KEY` com valores fortes e exclusivos.
+
 3. No editor de workflows, busque pelo node **Random** e escolha a operação *True Random Number Generator*. Informe os inteiros `Min` e `Max` para gerar um número via Random.org.
+
 4. Para encerrar os serviços:
+
    ```bash
-   docker compose down
+   sudo docker compose down
    ```
 
 ## Fluxo de desenvolvimento
 
 - Recompile após qualquer alteração no código do node:
+
   ```bash
   npm run build
+  sudo docker compose restart n8n
   ```
-  O comando limpa artefatos anteriores, roda o TypeScript e atualiza `.n8n/custom`. Reinicie o contêiner do n8n para recarregar o node.
+  O comando limpa artefatos anteriores, roda o TypeScript e atualiza `.n8n/custom`.
+
+- Reinicie o contêiner do n8n para recarregar o node:
+
+   ```bash
+   docker compose restart n8n
+   ```
+
 - Verifique tipos/lint:
+
   ```bash
   npm run lint
   ```
-- Espera-se que testes automatizados residam em `packages/random-node/test`. O comando abaixo executa a suíte (atualmente apenas a checagem de tipos).
+
+- O comando abaixo executa testes automatizados (atualmente apenas a checagem de tipos) em `packages/random-node/test`.
+
   ```bash
   npm test
   ```
@@ -85,8 +112,8 @@ O script de build compila o pacote TypeScript (`packages/random-node`) e publica
 
 ## Comandos úteis
 
-- Acompanhar logs do n8n: `docker compose logs -f n8n`
-- Resetar o ambiente (remove volumes): `docker compose down -v`
+- Acompanhar logs do n8n: `sudo docker compose logs -f n8n`
+- Resetar o ambiente (remove volumes): `sudo docker compose down -v`
 - Limpar artefatos compilados: `npm run clean --workspace @onfly/random-node`
 
 ## Próximos passos sugeridos
