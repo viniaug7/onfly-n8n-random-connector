@@ -1,21 +1,33 @@
-# dependencies
-node_modules
-**/node_modules/
-
-# build outputs
-packages/random-node/dist
-n8n/.n8n/custom/random/
-
-#logs
+# ===== Node / TypeScript =====
+node_modules/
+dist/
 *.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+coverage/
+.tmp/
+.cache/
 
-# environment
-.env
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store
+*.swp
 
-# data volumes
-n8n/.n8n/storage
-n8n/.n8n/.cache
-postgres-data
-
-# keep placeholder files
+# ===== n8n: ignore estado local e logs =====
+n8n/.n8n/**
+!n8n/.n8n/custom/
+n8n/.n8n/custom/**
 !n8n/.n8n/custom/.gitkeep
+
+# ===== Pacote do node customizado =====
+packages/random-node/dist/
+
+# ===== Env files =====
+.env
+.env.*
+!.env.example
+
+# Docker artefatos
+**/.docker/

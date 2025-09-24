@@ -1,2 +1,0 @@
-{"__type":"$$EventMessageAudit","id":"ecc630c7-d207-486d-9408-fb79db9c138d","ts":"2025-09-19T21:52:08.984+00:00","eventName":"n8n.audit.workflow.deleted","message":"n8n.audit.workflow.deleted","payload":{"userId":"c0420d75-e306-4441-88bb-109851ea2734","_email":"vaasmello@gmail.com","_firstName":"Vinicius","_lastName":"Mello","globalRole":"global:owner","workflowId":"sxENznwdENcaZs9x"}}
-{"__type":"$$EventMessageConfirm","confirm":"ecc630c7-d207-486d-9408-fb79db9c138d","ts":"2025-09-19T21:52:08.984+00:00","source":{"id":"0","name":"eventBus"}}
